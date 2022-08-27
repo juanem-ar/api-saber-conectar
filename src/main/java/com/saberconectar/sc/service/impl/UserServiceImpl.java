@@ -18,25 +18,25 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
 
-    public UserDTO save(UserDTO dto) {
+    public UserDTO save(UserDTO dto, Boolean setStudent, Boolean setInstitution) {
         UserEntity entity = userMapper.userDTO2Entity(dto);
         UserEntity entitySaved = userRepository.save(entity);
-        UserDTO result = userMapper.userEntity2DTO(entitySaved, true);
+        UserDTO result = userMapper.userEntity2DTO(entitySaved, setStudent, setInstitution);
         return result;
     }
 
-    public UserDTO getUserById(Long id) {
+    public UserDTO getUserById(Long id, Boolean setStudent, Boolean setInstitution) {
         isCorrect(id);
         UserEntity entity = userRepository.getReferenceById(id);
-        UserDTO result = userMapper.userEntity2DTO(entity, true);
+        UserDTO result = userMapper.userEntity2DTO(entity, setStudent, setInstitution);
         return result;
     }
-    public UserDTO update(Long id, UserDTO user) {
+    public UserDTO update(Long id, UserDTO user, Boolean setStudent, Boolean setInstitution) {
         isCorrect(id);
         UserEntity entityId = userRepository.getReferenceById(id);
         UserEntity entity = userMapper.update(entityId,user);
         UserEntity entityUpdated = userRepository.save(entity);
-        UserDTO result = userMapper.userEntity2DTO(entityUpdated, false);
+        UserDTO result = userMapper.userEntity2DTO(entityUpdated, setStudent, setInstitution);
         return result;
     }
     public void delete(Long id) {

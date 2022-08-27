@@ -36,8 +36,6 @@ public class StudentServiceImpl implements StudentService {
         StudentDTO dto = studentMapper.studentEntity2DTO(entity);
         return dto;
     }
-
-    @Override
     public StudentDTO update(Long id, StudentDTO student) {
         isCorrect(id);
         StudentEntity entityId = studentRepository.getReferenceById(id);

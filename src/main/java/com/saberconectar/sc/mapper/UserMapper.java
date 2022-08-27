@@ -17,7 +17,7 @@ public class UserMapper {
         entity.setCityId(dto.getCityId());
         return entity;
     }
-    public UserDTO userEntity2DTO(UserEntity entity, Boolean setStudent){
+    public UserDTO userEntity2DTO(UserEntity entity, Boolean setStudent, Boolean setInstitution){
         UserDTO dto = new UserDTO();
         dto.setId(entity.getId());
         dto.setEmail(entity.getEmail());
@@ -28,6 +28,9 @@ public class UserMapper {
         dto.setCityId(entity.getCityId());
         if(setStudent){
             dto.setStudentEntity(entity.getStudentEntity());
+        }
+        if(setInstitution){
+            dto.setInstitutionEntity(entity.getInstitutionEntity());
         }
         return dto;
     }

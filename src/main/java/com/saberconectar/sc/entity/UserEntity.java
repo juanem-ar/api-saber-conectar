@@ -49,4 +49,7 @@ public class UserEntity {
     @OneToOne(mappedBy = "userEntity")
     private StudentEntity studentEntity;
 
+    @OneToOne(mappedBy = "userEntity")
+    private InstitutionEntity institutionEntity;
+
 }

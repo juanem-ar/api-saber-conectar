@@ -1,38 +1,33 @@
 package com.saberconectar.sc.mapper;
 
+import com.saberconectar.sc.dto.InstitutionDTO;
 import com.saberconectar.sc.dto.StudentDTO;
 import com.saberconectar.sc.dto.UserDTO;
+import com.saberconectar.sc.entity.InstitutionEntity;
 import com.saberconectar.sc.entity.StudentEntity;
 import com.saberconectar.sc.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StudentMapper {
-
+public class InstitutionMapper {
     @Autowired
     private UserMapper userMapper;
-    public StudentEntity studentDTO2Entity(StudentDTO dto){
-        StudentEntity entity = new StudentEntity();
+
+    public InstitutionEntity institutionDTO2Entity(InstitutionDTO dto){
+        InstitutionEntity entity = new InstitutionEntity();
         entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
-        entity.setDocumentNumber(dto.getDocumentNumber());
-        entity.setDate(dto.getDate());
+        entity.setCuitNumber(dto.getCuitNumber());
         entity.setDeleted(dto.getDeleted());
-
         entity.setUserEntity(dto.getUserEntity());
-
         return entity;
     }
-    public StudentDTO studentEntity2DTO(StudentEntity entity){
-        StudentDTO dto = new StudentDTO();
+    public InstitutionDTO institutionEntity2DTO(InstitutionEntity entity){
+        InstitutionDTO dto = new InstitutionDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
-        dto.setSurname(entity.getSurname());
-        dto.setDocumentNumber(entity.getDocumentNumber());
-        dto.setDate(entity.getDate());
+        dto.setCuitNumber(entity.getCuitNumber());
         dto.setDeleted(entity.getDeleted());
-
         UserDTO userDTO = userMapper.userEntity2DTO(entity.getUserEntity(), false, false);
         UserEntity userEntity = userMapper.userDTO2Entity(userDTO);
 
@@ -41,12 +36,10 @@ public class StudentMapper {
 
         return dto;
     }
-    public StudentEntity update(StudentEntity entity, StudentDTO dto){
+    public InstitutionEntity update(InstitutionEntity entity, InstitutionDTO dto){
         entity.getId();
         entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
-        entity.setDocumentNumber(dto.getDocumentNumber());
-        entity.setDate(dto.getDate());
+        entity.setCuitNumber(dto.getCuitNumber());
         entity.setDeleted(dto.getDeleted());
 
         UserDTO userDTO = userMapper.userEntity2DTO(dto.getUserEntity(), false, false);

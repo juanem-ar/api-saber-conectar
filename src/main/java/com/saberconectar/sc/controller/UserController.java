@@ -16,18 +16,18 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id){
-        UserDTO user = userService.getUserById(id);
+        UserDTO user = userService.getUserById(id, false, false);
         return ResponseEntity.ok().body(user);
     }
 
     @PostMapping
     public ResponseEntity<UserDTO> save(@RequestBody UserDTO user){
-        UserDTO userSaved = userService.save(user);
+        UserDTO userSaved = userService.save(user, false, false);
         return ResponseEntity.status(HttpStatus.CREATED).body(userSaved);
     }
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO user) {
-        UserDTO userUpdated = this.userService.update(id, user);
+        UserDTO userUpdated = this.userService.update(id, user, false, false);
         return ResponseEntity.ok().body(userUpdated);
     }
     @DeleteMapping("/{id}")
