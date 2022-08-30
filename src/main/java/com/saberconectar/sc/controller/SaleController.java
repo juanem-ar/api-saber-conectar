@@ -6,20 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("sales")
 public class SaleController {
-
     @Autowired
     private SaleService saleService;
-
     @GetMapping("/{id}")
-    public ResponseEntity<SaleDTO> getSaleById(@PathVariable Long id){
+    public ResponseEntity<SaleDTO>getSaleById(@PathVariable Long id){
         SaleDTO sale = saleService.getSaleById(id);
         return ResponseEntity.ok().body(sale);
     }
-
     @PostMapping
     public ResponseEntity<SaleDTO> save(@RequestBody SaleDTO sale){
         SaleDTO saleSaved = saleService.save(sale);
@@ -35,5 +31,4 @@ public class SaleController {
         this.saleService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }

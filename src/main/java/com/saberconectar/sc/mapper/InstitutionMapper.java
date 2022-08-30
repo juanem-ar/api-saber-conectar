@@ -8,7 +8,6 @@ import com.saberconectar.sc.entity.InstitutionEntity;
 import com.saberconectar.sc.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +19,6 @@ public class InstitutionMapper {
     private UserMapper userMapper;
     @Autowired
     private CourseMapper courseMapper;
-
     public InstitutionEntity institutionDTO2Entity(InstitutionDTO dto, Boolean loadCourses){
         InstitutionEntity entity = new InstitutionEntity();
         entity.setName(dto.getName());
@@ -48,8 +46,6 @@ public class InstitutionMapper {
             Set<CourseEntity> entities = courseMapper.courseDTOSet2EntitySet(dtos, false);
             dto.setCourses(entities);
         }
-
-
         return dto;
     }
     public InstitutionEntity update(InstitutionEntity entity, InstitutionDTO dto){
@@ -57,12 +53,9 @@ public class InstitutionMapper {
         entity.setName(dto.getName());
         entity.setCuitNumber(dto.getCuitNumber());
         entity.setDeleted(dto.getDeleted());
-
         UserDTO userDTO = userMapper.userEntity2DTO(dto.getUserEntity(), false, false);
-
         UserEntity userEntity = userMapper.update(entity.getUserEntity(), userDTO);
         entity.setUserEntity(userEntity);
-
         return entity;
     }
     public List<InstitutionDTO> institutionEntityList2DTOList(List<InstitutionEntity> entities,boolean loadUsers, boolean loadCourses){

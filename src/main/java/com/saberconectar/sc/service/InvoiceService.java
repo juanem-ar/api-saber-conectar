@@ -1,7 +1,6 @@
 package com.saberconectar.sc.service;
 
 import com.saberconectar.sc.dto.InvoiceDTO;
-
 public interface InvoiceService {
     InvoiceDTO getInvoiceById(Long id);
     InvoiceDTO save(InvoiceDTO dto);

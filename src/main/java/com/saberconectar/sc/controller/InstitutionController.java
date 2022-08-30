@@ -2,8 +2,6 @@ package com.saberconectar.sc.controller;
 
 import com.saberconectar.sc.dto.CourseDTO;
 import com.saberconectar.sc.dto.InstitutionDTO;
-import com.saberconectar.sc.dto.StudentDTO;
-import com.saberconectar.sc.entity.CourseEntity;
 import com.saberconectar.sc.entity.InstitutionEntity;
 import com.saberconectar.sc.service.CourseService;
 import com.saberconectar.sc.service.InstitutionService;
@@ -17,14 +15,12 @@ import java.util.Set;
 @RestController
 @RequestMapping("institutions")
 public class InstitutionController {
-
     @Autowired
     private InstitutionService institutionService;
     @Autowired
     private CourseController courseController;
     @Autowired
     private CourseService courseService;
-
     @GetMapping("/{id}")
     public ResponseEntity<InstitutionDTO> getInstitutionById(@PathVariable Long id)
     {

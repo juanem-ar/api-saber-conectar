@@ -6,21 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 @RestController
 @RequestMapping("provinces")
 public class ProvinceController {
     @Autowired
     private ProvinceService provinceService;
-
     @GetMapping
     public ResponseEntity<List<ProvinceDTO>> getAll(){
         List<ProvinceDTO> provinces = provinceService.getAllProvinces();
         return ResponseEntity.ok().body(provinces);
     }
-
     @PostMapping
     public ResponseEntity<ProvinceDTO> save(@RequestBody ProvinceDTO province){
         ProvinceDTO provinceSaved = provinceService.save(province);

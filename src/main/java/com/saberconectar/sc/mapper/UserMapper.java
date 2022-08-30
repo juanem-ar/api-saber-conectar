@@ -3,10 +3,8 @@ package com.saberconectar.sc.mapper;
 import com.saberconectar.sc.dto.UserDTO;
 import com.saberconectar.sc.entity.UserEntity;
 import org.springframework.stereotype.Component;
-
 @Component
 public class UserMapper {
-
     public UserEntity userDTO2Entity(UserDTO dto){
         UserEntity entity = new UserEntity();
         entity.setEmail(dto.getEmail());

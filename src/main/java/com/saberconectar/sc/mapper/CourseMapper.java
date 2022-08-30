@@ -1,13 +1,11 @@
 package com.saberconectar.sc.mapper;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.saberconectar.sc.dto.CourseDTO;
 import com.saberconectar.sc.dto.InstitutionDTO;
 import com.saberconectar.sc.entity.CourseEntity;
 import com.saberconectar.sc.entity.InstitutionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.*;
 
 
@@ -15,7 +13,6 @@ import java.util.*;
 public class CourseMapper {
     @Autowired
     private InstitutionMapper institutionMapper;
-
     public CourseEntity courseDTO2Entity(CourseDTO dto, boolean loadInstitutions){
         CourseEntity entity = new CourseEntity();
         entity.setName(dto.getName());
@@ -50,7 +47,6 @@ public class CourseMapper {
         entity.setEndingDay(dto.getEndingDay());
         entity.setDeleted(dto.getDeleted());
         entity.getInstitutions();
-
         return entity;
     }
     public Set<CourseDTO> courseEntitySet2DTOSet(Collection<CourseEntity> entities, boolean loadInstitution){

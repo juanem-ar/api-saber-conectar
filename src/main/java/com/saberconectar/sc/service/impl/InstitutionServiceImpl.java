@@ -10,7 +10,6 @@ import com.saberconectar.sc.repository.InstitutionRepository;
 import com.saberconectar.sc.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class InstitutionServiceImpl implements InstitutionService {
     @Autowired
@@ -19,7 +18,6 @@ public class InstitutionServiceImpl implements InstitutionService {
     private InstitutionMapper institutionMapper;
     @Autowired
     private CourseRepository courseRepository;
-
     public InstitutionDTO institutionRegister(InstitutionDTO dto) {
         InstitutionEntity entity = institutionMapper.institutionDTO2Entity(dto, false);
         InstitutionEntity entitySaved = institutionRepository.save(entity);
@@ -30,7 +28,6 @@ public class InstitutionServiceImpl implements InstitutionService {
         isCorrect(id, "id");
         this.institutionRepository.deleteById(id);
     }
-
     public InstitutionDTO getInstitutionById(Long id) {
         isCorrect(id, "id");
         InstitutionEntity entity = institutionRepository.getReferenceById(id);
@@ -52,7 +49,6 @@ public class InstitutionServiceImpl implements InstitutionService {
         InstitutionDTO dto = institutionMapper.institutionEntity2DTO(entityUpdated,true, false);
         return dto;
     }
-
     public void addCourse(Long idInstitution, Long idCourse) {
         areCorrect(idInstitution, "institution id", idCourse, "course id");
         InstitutionEntity institutionEntity = institutionRepository.getReferenceById(idInstitution);
@@ -67,7 +63,6 @@ public class InstitutionServiceImpl implements InstitutionService {
         institutionEntity.getCourses().remove(courseEntity);
         institutionRepository.save(institutionEntity);
     }
-
     public void isCorrect(Long id, String name){
         if(!institutionRepository.existsById(id)){
             throw new ParamNotFound("Invalid " + name);

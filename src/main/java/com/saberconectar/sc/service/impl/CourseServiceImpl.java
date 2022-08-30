@@ -8,14 +8,12 @@ import com.saberconectar.sc.repository.CourseRepository;
 import com.saberconectar.sc.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
     private CourseMapper courseMapper;
-
     public CourseDTO save(CourseDTO dto) {
         CourseEntity entity = courseMapper.courseDTO2Entity(dto, false);
         CourseEntity entitySaved = courseRepository.save(entity);
@@ -28,7 +26,6 @@ public class CourseServiceImpl implements CourseService {
         CourseDTO dto = courseMapper.courseEntity2DTO(entity, true);
         return dto;
     }
-
     public CourseDTO update(Long id, CourseDTO dto){
         isCorrect(id, "id");
         CourseEntity entityId = courseRepository.getReferenceById(id);

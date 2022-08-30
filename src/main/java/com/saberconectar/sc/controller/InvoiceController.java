@@ -6,20 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("invoices")
 public class InvoiceController {
-
     @Autowired
     private InvoiceService invoiceService;
-
     @GetMapping("/{id}")
     public ResponseEntity<InvoiceDTO> getInvoiceById(@PathVariable Long id){
         InvoiceDTO invoice = invoiceService.getInvoiceById(id);
         return ResponseEntity.ok().body(invoice);
     }
-
     @PostMapping
     public ResponseEntity<InvoiceDTO> save(@RequestBody InvoiceDTO invoice){
         InvoiceDTO invoiceSaved = invoiceService.save(invoice);
@@ -35,5 +31,4 @@ public class InvoiceController {
         this.invoiceService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }

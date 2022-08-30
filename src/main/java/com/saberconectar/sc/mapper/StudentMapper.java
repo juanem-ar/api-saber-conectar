@@ -8,12 +8,9 @@ import com.saberconectar.sc.entity.StudentEntity;
 import com.saberconectar.sc.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.Set;
-
 @Component
 public class StudentMapper {
-
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -25,9 +22,7 @@ public class StudentMapper {
         entity.setDocumentNumber(dto.getDocumentNumber());
         entity.setDate(dto.getDate());
         entity.setDeleted(dto.getDeleted());
-
         entity.setUserEntity(dto.getUserEntity());
-
         return entity;
     }
     public StudentDTO studentEntity2DTO(StudentEntity entity, Boolean loadUser, Boolean loadCourses){
@@ -58,12 +53,9 @@ public class StudentMapper {
         entity.setDocumentNumber(dto.getDocumentNumber());
         entity.setDate(dto.getDate());
         entity.setDeleted(dto.getDeleted());
-
         UserDTO userDTO = userMapper.userEntity2DTO(dto.getUserEntity(), false, false);
-
         UserEntity userEntity = userMapper.update(entity.getUserEntity(), userDTO);
         entity.setUserEntity(userEntity);
-
         return entity;
     }
 }

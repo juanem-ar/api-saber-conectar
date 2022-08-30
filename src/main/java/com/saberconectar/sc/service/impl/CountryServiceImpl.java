@@ -8,16 +8,13 @@ import com.saberconectar.sc.repository.CountryRepository;
 import com.saberconectar.sc.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 @Service
 public class CountryServiceImpl implements CountryService {
-
     @Autowired
     private CountryRepository countryRepository;
     @Autowired
     private CountryMapper countryMapper;
-
     @Override
     public List<CountryDTO> getAllCountries() {
         List<CountryEntity> entities = countryRepository.findAll();

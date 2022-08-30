@@ -8,23 +8,18 @@ import com.saberconectar.sc.repository.UserRepository;
 import com.saberconectar.sc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private UserRepository userRepository;
-
-
     public UserDTO save(UserDTO dto, Boolean setStudent, Boolean setInstitution) {
         UserEntity entity = userMapper.userDTO2Entity(dto);
         UserEntity entitySaved = userRepository.save(entity);
         UserDTO result = userMapper.userEntity2DTO(entitySaved, setStudent, setInstitution);
         return result;
     }
-
     public UserDTO getUserById(Long id, Boolean setStudent, Boolean setInstitution) {
         isCorrect(id);
         UserEntity entity = userRepository.getReferenceById(id);

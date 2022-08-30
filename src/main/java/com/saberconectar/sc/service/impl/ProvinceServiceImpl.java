@@ -8,7 +8,6 @@ import com.saberconectar.sc.repository.ProvinceRepository;
 import com.saberconectar.sc.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 @Service
 public class ProvinceServiceImpl implements ProvinceService {
@@ -16,14 +15,12 @@ public class ProvinceServiceImpl implements ProvinceService {
     private ProvinceRepository provinceRepository;
     @Autowired
     private ProvinceMapper provinceMapper;
-
     @Override
     public List<ProvinceDTO> getAllProvinces() {
         List<ProvinceEntity> entities = provinceRepository.findAll();
         List<ProvinceDTO> dtos = provinceMapper.provinceEntityList2DTOList(entities);
         return dtos;
     }
-
     @Override
     public ProvinceDTO save(ProvinceDTO dto) {
         ProvinceEntity entity = provinceMapper.provinceDTO2Entity(dto);
@@ -31,7 +28,6 @@ public class ProvinceServiceImpl implements ProvinceService {
         ProvinceDTO result = provinceMapper.provinceEntity2DTO(entitySaved);
         return result;
     }
-
     public ProvinceDTO update(Long id, ProvinceDTO province){
         isCorrect(id);
         ProvinceEntity entityId = provinceRepository.getReferenceById(id);

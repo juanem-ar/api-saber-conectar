@@ -10,31 +10,25 @@ import com.saberconectar.sc.repository.StudentRepository;
 import com.saberconectar.sc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class StudentServiceImpl implements StudentService {
-
     @Autowired
     private StudentRepository studentRepository;
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
     private StudentMapper studentMapper;
-
     public StudentDTO studentRegister(StudentDTO dto) {
         StudentEntity entity = studentMapper.studentDTO2Entity(dto);
         StudentEntity entitySaved = studentRepository.save(entity);
         StudentDTO result = studentMapper.studentEntity2DTO(entitySaved,
                 true, false);
         return result;
-
     }
-
     public void delete(Long id) {
         isCorrect(id, "id");
         this.studentRepository.deleteById(id);
     }
-
     public StudentDTO getStudentById(Long id) {
         isCorrect(id, "id");
         StudentEntity entity = studentRepository.getReferenceById(id);
@@ -58,7 +52,6 @@ public class StudentServiceImpl implements StudentService {
                 true, false);
         return dto;
     }
-
     public void addCourse(Long idStudent, Long idCourse) {
         areCorrect(idStudent, "student id.", idCourse, "course id.");
         StudentEntity studentEntity = studentRepository.getReferenceById(idStudent);
@@ -73,7 +66,6 @@ public class StudentServiceImpl implements StudentService {
         studentEntity.getCourses().remove(courseEntity);
         studentRepository.save(studentEntity);
     }
-
     public void isCorrect(Long id, String name){
         if(!studentRepository.existsById(id)){
             throw new ParamNotFound("Invalid id");

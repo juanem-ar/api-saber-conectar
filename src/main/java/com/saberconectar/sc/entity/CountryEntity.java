@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
-
 @Entity
 @Table(name = "country")
 @Getter

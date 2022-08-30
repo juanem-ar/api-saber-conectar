@@ -4,7 +4,6 @@ import com.saberconectar.sc.entity.InstitutionEntity;
 import com.saberconectar.sc.entity.StudentEntity;
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter
 @Setter
 public class UserDTO {

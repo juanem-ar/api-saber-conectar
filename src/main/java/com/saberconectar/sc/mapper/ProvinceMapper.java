@@ -3,13 +3,10 @@ package com.saberconectar.sc.mapper;
 import com.saberconectar.sc.entity.ProvinceEntity;
 import com.saberconectar.sc.dto.ProvinceDTO;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
-
 @Component
 public class ProvinceMapper {
-
     public ProvinceEntity provinceDTO2Entity(ProvinceDTO dto){
         ProvinceEntity provinceEntity = new ProvinceEntity();
         provinceEntity.setName(dto.getName());
@@ -23,7 +20,6 @@ public class ProvinceMapper {
         dto.setDeleted(entity.getDeleted());
         return dto;
     }
-
     public List<ProvinceDTO> provinceEntityList2DTOList(List<ProvinceEntity> entities){
         List<ProvinceDTO> dtos = new ArrayList<>();
         for (ProvinceEntity entity: entities){

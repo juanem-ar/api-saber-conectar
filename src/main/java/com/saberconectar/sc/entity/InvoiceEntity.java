@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-
 @Entity
 @Table(name = "invoice")
 @Getter
@@ -21,27 +19,20 @@ public class InvoiceEntity {
     private LocalDate date;
     //soft-delete
     private Boolean deleted = Boolean.FALSE;
-
     @Column(name="invoice_type_id", nullable = false)
     private Long invoiceTypeId;
-
     @Column(name="sale_id", nullable = false)
     private Long saleId;
-
     @Column(name="user_id", nullable = false)
     private Long userId;
-
     //User
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private UserEntity user; // search info into user datatable
-
-
     //InvoiceType
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "invoice_type_id", insertable = false, updatable = false)
     private InvoiceTypeEntity invoiceType; // search info into invoice_type datatable
-
     //Sale
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "sale_id", insertable = false, updatable = false)

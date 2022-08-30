@@ -5,12 +5,10 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 @Entity
 @Table(name = "career")
 @Getter
@@ -30,10 +28,8 @@ public class CareerEntity {
     @DateTimeFormat(pattern = "yyy/MM/dd")
     private LocalDate endingDay;
     private Boolean deleted = Boolean.FALSE;
-
     @ManyToMany(mappedBy = "careers", cascade = CascadeType.REFRESH)
     private List<InstitutionEntity> institutions = new ArrayList<>();
-
     @ManyToMany(mappedBy = "careers", cascade = CascadeType.REFRESH)
     private List<StudentEntity> students = new ArrayList<>();
 }

@@ -3,10 +3,8 @@ package com.saberconectar.sc.mapper;
 import com.saberconectar.sc.entity.CityEntity;
 import com.saberconectar.sc.dto.CityDTO;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
-
 @Component
 public class CityMapper {
     public CityEntity cityDTO2Entity(CityDTO dto){
@@ -22,7 +20,6 @@ public class CityMapper {
         dto.setDeleted(entity.getDeleted());
         return dto;
     }
-
     public List<CityDTO> cityEntityList2DTOList(List<CityEntity> entities){
         List<CityDTO> dtos = new ArrayList<>();
         for (CityEntity entity: entities){

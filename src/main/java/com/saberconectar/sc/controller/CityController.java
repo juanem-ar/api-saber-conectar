@@ -14,7 +14,6 @@ import java.util.List;
 public class CityController {
     @Autowired
     private CityService cityService;
-
     @GetMapping
     public ResponseEntity<List<CityDTO>> getAll(){
         List<CityDTO> cities = cityService.getAllCities();
