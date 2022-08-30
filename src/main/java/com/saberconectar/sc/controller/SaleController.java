@@ -1,7 +1,7 @@
 package com.saberconectar.sc.controller;
 
-import com.saberconectar.sc.dto.UserDTO;
-import com.saberconectar.sc.service.UserService;
+import com.saberconectar.sc.dto.SaleDTO;
+import com.saberconectar.sc.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +22,12 @@ public class SaleController {
 
     @PostMapping
     public ResponseEntity<SaleDTO> save(@RequestBody SaleDTO sale){
-        SaleDTO saleSaved = saleService.save(user);
+        SaleDTO saleSaved = saleService.save(sale);
         return ResponseEntity.status(HttpStatus.CREATED).body(saleSaved);
     }
     @PutMapping("/{id}")
     public ResponseEntity<SaleDTO> update(@PathVariable Long id, @RequestBody SaleDTO sale) {
-        SaleDTO saleUpdated = this.saleService.update(id);
+        SaleDTO saleUpdated = this.saleService.update(id, sale);
         return ResponseEntity.ok().body(saleUpdated);
     }
     @DeleteMapping("/{id}")

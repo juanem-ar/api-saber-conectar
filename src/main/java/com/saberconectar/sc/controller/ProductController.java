@@ -1,7 +1,7 @@
 package com.saberconectar.sc.controller;
 
-import com.saberconectar.sc.dto.CityDTO;
-import com.saberconectar.sc.service.CityService;
+import com.saberconectar.sc.dto.ProductDTO;
+import com.saberconectar.sc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

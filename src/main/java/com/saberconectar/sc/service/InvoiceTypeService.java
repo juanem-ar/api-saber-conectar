@@ -1,11 +1,11 @@
 package com.saberconectar.sc.service;
 
-import com.saberconectar.sc.dto.CityDTO;
+import com.saberconectar.sc.dto.InvoiceTypeDTO;
 
 import java.util.List;
 
 public interface InvoiceTypeService {
-    List<InvoiceTypeDTO> getAll();
+    List<InvoiceTypeDTO> getAllInvoiceTypes();
     InvoiceTypeDTO save(InvoiceTypeDTO type);
     InvoiceTypeDTO update(Long id, InvoiceTypeDTO type);
     void delete (Long id);

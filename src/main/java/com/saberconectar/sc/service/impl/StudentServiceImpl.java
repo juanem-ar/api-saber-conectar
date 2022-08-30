@@ -1,9 +1,11 @@
 package com.saberconectar.sc.service.impl;
 
 import com.saberconectar.sc.dto.StudentDTO;
+import com.saberconectar.sc.entity.CourseEntity;
 import com.saberconectar.sc.entity.StudentEntity;
 import com.saberconectar.sc.exception.ParamNotFound;
 import com.saberconectar.sc.mapper.StudentMapper;
+import com.saberconectar.sc.repository.CourseRepository;
 import com.saberconectar.sc.repository.StudentRepository;
 import com.saberconectar.sc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private CourseRepository courseRepository;
     @Autowired
     private StudentMapper studentMapper;
 
@@ -26,18 +30,18 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public void delete(Long id) {
-        isCorrect(id);
+        isCorrect(id, "id");
         this.studentRepository.deleteById(id);
     }
 
     public StudentDTO getStudentById(Long id) {
-        isCorrect(id);
+        isCorrect(id, "id");
         StudentEntity entity = studentRepository.getReferenceById(id);
         StudentDTO dto = studentMapper.studentEntity2DTO(entity);
         return dto;
     }
     public StudentDTO update(Long id, StudentDTO student) {
-        isCorrect(id);
+        isCorrect(id, "id");
         StudentEntity entityId = studentRepository.getReferenceById(id);
         StudentEntity entity = studentMapper.update(entityId, student);
         StudentEntity entityUpdated = studentRepository.save(entity);
@@ -57,10 +61,10 @@ public class StudentServiceImpl implements StudentService {
         StudentEntity studentEntity = studentRepository.getReferenceById(idStudent);
         CourseEntity courseEntity = courseRepository.getReferenceById(idCourse);
         studentEntity.getCourses().remove(courseEntity);
-        studentRepository.save(courseEntity);
+        studentRepository.save(studentEntity);
     }
 
-    public void isCorrect(Long id){
+    public void isCorrect(Long id, String name){
         if(!studentRepository.existsById(id)){
             throw new ParamNotFound("Invalid id");
         }

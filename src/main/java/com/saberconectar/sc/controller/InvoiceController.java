@@ -1,7 +1,7 @@
 package com.saberconectar.sc.controller;
 
-import com.saberconectar.sc.dto.UserDTO;
-import com.saberconectar.sc.service.UserService;
+import com.saberconectar.sc.dto.InvoiceDTO;
+import com.saberconectar.sc.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class InvoiceController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<InvoiceDTO> update(@PathVariable Long id, @RequestBody InvoiceDTO invoice) {
-        InvoiceDTO invoiceUpdated = this.invoiceService.update(id);
+        InvoiceDTO invoiceUpdated = this.invoiceService.update(id, invoice);
         return ResponseEntity.ok().body(invoiceUpdated);
     }
     @DeleteMapping("/{id}")

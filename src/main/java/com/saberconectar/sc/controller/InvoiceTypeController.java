@@ -1,7 +1,7 @@
 package com.saberconectar.sc.controller;
 
-import com.saberconectar.sc.dto.CityDTO;
-import com.saberconectar.sc.service.CityService;
+import com.saberconectar.sc.dto.InvoiceTypeDTO;
+import com.saberconectar.sc.service.InvoiceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class InvoiceTypeController {
 
     @GetMapping
     public ResponseEntity<List<InvoiceTypeDTO>> getAll(){
-        List<InvoiceTypeDTO> invoiceTypes = invoiceTypeService.getAllInvoicesTypes();
+        List<InvoiceTypeDTO> invoiceTypes = invoiceTypeService.getAllInvoiceTypes();
         return ResponseEntity.ok().body(invoiceTypes);
     }
     @PostMapping

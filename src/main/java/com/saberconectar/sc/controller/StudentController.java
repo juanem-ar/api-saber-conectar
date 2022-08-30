@@ -1,11 +1,14 @@
 package com.saberconectar.sc.controller;
 
 import com.saberconectar.sc.dto.StudentDTO;
+import com.saberconectar.sc.entity.StudentEntity;
 import com.saberconectar.sc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("students")
