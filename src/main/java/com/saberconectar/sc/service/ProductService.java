@@ -4,10 +4,10 @@ import com.saberconectar.sc.dto.CityDTO;
 
 import java.util.List;
 
-public interface CityService {
-    List<CityDTO> getAllCities();
-    CityDTO save(CityDTO city);
-    CityDTO update(Long id, CityDTO city);
+public interface ProductService {
+    List<ProductDTO> getAll();
+    ProductDTO save(ProductDTO product);
+    ProductDTO update(Long id, ProductDTO product);
     void delete (Long id);
     void isCorrect(Long id);
 }
