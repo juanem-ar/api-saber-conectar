@@ -1,10 +1,8 @@
 package com.saberconectar.sc.service.impl;
 
 import com.saberconectar.sc.dto.InstitutionDTO;
-import com.saberconectar.sc.dto.StudentDTO;
 import com.saberconectar.sc.entity.CourseEntity;
 import com.saberconectar.sc.entity.InstitutionEntity;
-import com.saberconectar.sc.entity.StudentEntity;
 import com.saberconectar.sc.exception.ParamNotFound;
 import com.saberconectar.sc.mapper.InstitutionMapper;
 import com.saberconectar.sc.repository.CourseRepository;
@@ -23,7 +21,7 @@ public class InstitutionServiceImpl implements InstitutionService {
     private CourseRepository courseRepository;
 
     public InstitutionDTO institutionRegister(InstitutionDTO dto) {
-        InstitutionEntity entity = institutionMapper.institutionDTO2Entity(dto, true);
+        InstitutionEntity entity = institutionMapper.institutionDTO2Entity(dto, false);
         InstitutionEntity entitySaved = institutionRepository.save(entity);
         InstitutionDTO result = institutionMapper.institutionEntity2DTO(entitySaved,true, true);
         return result;
