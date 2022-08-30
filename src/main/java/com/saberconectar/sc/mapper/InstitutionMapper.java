@@ -32,15 +32,17 @@ public class InstitutionMapper {
         }
         return entity;
     }
-    public InstitutionDTO institutionEntity2DTO(InstitutionEntity entity, Boolean loadCourses){
+    public InstitutionDTO institutionEntity2DTO(InstitutionEntity entity,Boolean loadUser, Boolean loadCourses){
         InstitutionDTO dto = new InstitutionDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setCuitNumber(entity.getCuitNumber());
         dto.setDeleted(entity.getDeleted());
-        UserDTO userDTO = userMapper.userEntity2DTO(entity.getUserEntity(), false, false);
-        UserEntity userEntity = userMapper.userDTO2Entity(userDTO);
-        dto.setUserEntity(userEntity);
+        if(loadUser){
+            UserDTO userDTO = userMapper.userEntity2DTO(entity.getUserEntity(), false, false);
+            UserEntity userEntity = userMapper.userDTO2Entity(userDTO);
+            dto.setUserEntity(userEntity);
+        }
         if (loadCourses){
             Set<CourseDTO> dtos = courseMapper.courseEntitySet2DTOSet(entity.getCourses(), false);
             Set<CourseEntity> entities = courseMapper.courseDTOSet2EntitySet(dtos, false);
@@ -63,10 +65,10 @@ public class InstitutionMapper {
 
         return entity;
     }
-    public List<InstitutionDTO> institutionEntityList2DTOList(List<InstitutionEntity> entities, boolean loadCourses){
+    public List<InstitutionDTO> institutionEntityList2DTOList(List<InstitutionEntity> entities,boolean loadUsers, boolean loadCourses){
         List<InstitutionDTO> dtos = new ArrayList<>();
         for(InstitutionEntity entity: entities){
-            dtos.add(this.institutionEntity2DTO(entity, loadCourses));
+            dtos.add(this.institutionEntity2DTO(entity,loadUsers, loadCourses));
         }
         return dtos;
     }

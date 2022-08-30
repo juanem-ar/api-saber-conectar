@@ -36,7 +36,7 @@ public class CourseMapper {
         dto.setEndingDay(entity.getEndingDay());
         dto.setDeleted(entity.getDeleted());
         if(loadInstitutions){
-            List<InstitutionDTO> dtos = institutionMapper.institutionEntityList2DTOList(entity.getInstitutions(), false);
+            List<InstitutionDTO> dtos = institutionMapper.institutionEntityList2DTOList(entity.getInstitutions(),true, false);
             List<InstitutionEntity> entities = institutionMapper.institutionDTOList2EntityList(dtos, false);
             dto.setInstitutions(entities);
         }

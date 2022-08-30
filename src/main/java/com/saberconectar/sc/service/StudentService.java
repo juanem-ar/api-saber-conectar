@@ -5,6 +5,7 @@ import com.saberconectar.sc.dto.StudentDTO;
 public interface StudentService {
     StudentDTO studentRegister(StudentDTO dto);
     StudentDTO getStudentById(Long id);
+    StudentDTO getStudentANDCoursesById(Long id);
     StudentDTO update(Long id, StudentDTO dto);
 
     void addCourse(Long idStudent, Long idCourse);

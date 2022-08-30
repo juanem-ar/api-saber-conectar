@@ -2,6 +2,7 @@ package com.saberconectar.sc.controller;
 
 import com.saberconectar.sc.dto.CourseDTO;
 import com.saberconectar.sc.dto.InstitutionDTO;
+import com.saberconectar.sc.dto.StudentDTO;
 import com.saberconectar.sc.entity.CourseEntity;
 import com.saberconectar.sc.entity.InstitutionEntity;
 import com.saberconectar.sc.service.CourseService;
@@ -28,6 +29,11 @@ public class InstitutionController {
     public ResponseEntity<InstitutionDTO> getInstitutionById(@PathVariable Long id)
     {
         InstitutionDTO institution = institutionService.getInstitutionById(id);
+        return ResponseEntity.ok().body(institution);
+    }
+    @GetMapping("/{id}/courses")
+    public ResponseEntity<InstitutionDTO> getInstitutionCoursesById(@PathVariable Long id){
+        InstitutionDTO institution = institutionService.getInstitutionCoursesById(id);
         return ResponseEntity.ok().body(institution);
     }
     @PostMapping

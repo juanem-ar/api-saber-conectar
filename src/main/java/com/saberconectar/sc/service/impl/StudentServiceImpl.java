@@ -24,7 +24,8 @@ public class StudentServiceImpl implements StudentService {
     public StudentDTO studentRegister(StudentDTO dto) {
         StudentEntity entity = studentMapper.studentDTO2Entity(dto);
         StudentEntity entitySaved = studentRepository.save(entity);
-        StudentDTO result = studentMapper.studentEntity2DTO(entitySaved);
+        StudentDTO result = studentMapper.studentEntity2DTO(entitySaved,
+                true, false);
         return result;
 
     }
@@ -37,7 +38,15 @@ public class StudentServiceImpl implements StudentService {
     public StudentDTO getStudentById(Long id) {
         isCorrect(id, "id");
         StudentEntity entity = studentRepository.getReferenceById(id);
-        StudentDTO dto = studentMapper.studentEntity2DTO(entity);
+        StudentDTO dto = studentMapper.studentEntity2DTO(entity,
+                true ,false);
+        return dto;
+    }
+    public StudentDTO getStudentANDCoursesById(Long id) {
+        isCorrect(id, "id");
+        StudentEntity entity = studentRepository.getReferenceById(id);
+        StudentDTO dto = studentMapper.studentEntity2DTO(entity,
+                false, true);
         return dto;
     }
     public StudentDTO update(Long id, StudentDTO student) {
@@ -45,7 +54,8 @@ public class StudentServiceImpl implements StudentService {
         StudentEntity entityId = studentRepository.getReferenceById(id);
         StudentEntity entity = studentMapper.update(entityId, student);
         StudentEntity entityUpdated = studentRepository.save(entity);
-        StudentDTO dto = studentMapper.studentEntity2DTO(entityUpdated);
+        StudentDTO dto = studentMapper.studentEntity2DTO(entityUpdated,
+                true, false);
         return dto;
     }
 

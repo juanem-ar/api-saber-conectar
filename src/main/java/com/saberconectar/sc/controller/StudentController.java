@@ -22,6 +22,11 @@ public class StudentController {
         StudentDTO student = studentService.getStudentById(id);
         return ResponseEntity.ok().body(student);
     }
+    @GetMapping("/{id}/courses")
+    public ResponseEntity<StudentDTO> getStudentANDCoursesById(@PathVariable Long id){
+        StudentDTO student = studentService.getStudentANDCoursesById(id);
+        return ResponseEntity.ok().body(student);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> studentDelete(@PathVariable Long id){
         this.studentService.delete(id);

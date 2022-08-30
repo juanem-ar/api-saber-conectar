@@ -1,8 +1,10 @@
 package com.saberconectar.sc.service.impl;
 
 import com.saberconectar.sc.dto.InstitutionDTO;
+import com.saberconectar.sc.dto.StudentDTO;
 import com.saberconectar.sc.entity.CourseEntity;
 import com.saberconectar.sc.entity.InstitutionEntity;
+import com.saberconectar.sc.entity.StudentEntity;
 import com.saberconectar.sc.exception.ParamNotFound;
 import com.saberconectar.sc.mapper.InstitutionMapper;
 import com.saberconectar.sc.repository.CourseRepository;
@@ -23,7 +25,7 @@ public class InstitutionServiceImpl implements InstitutionService {
     public InstitutionDTO institutionRegister(InstitutionDTO dto) {
         InstitutionEntity entity = institutionMapper.institutionDTO2Entity(dto, true);
         InstitutionEntity entitySaved = institutionRepository.save(entity);
-        InstitutionDTO result = institutionMapper.institutionEntity2DTO(entitySaved, true);
+        InstitutionDTO result = institutionMapper.institutionEntity2DTO(entitySaved,true, true);
         return result;
     }
     public void delete(Long id) {
@@ -34,7 +36,14 @@ public class InstitutionServiceImpl implements InstitutionService {
     public InstitutionDTO getInstitutionById(Long id) {
         isCorrect(id, "id");
         InstitutionEntity entity = institutionRepository.getReferenceById(id);
-        InstitutionDTO dto = institutionMapper.institutionEntity2DTO(entity, true);
+        InstitutionDTO dto = institutionMapper.institutionEntity2DTO(entity,true, false);
+        return dto;
+    }
+    public InstitutionDTO getInstitutionCoursesById(Long id) {
+        isCorrect(id, "id");
+        InstitutionEntity entity = institutionRepository.getReferenceById(id);
+        InstitutionDTO dto = institutionMapper.institutionEntity2DTO(entity,
+                false, true);
         return dto;
     }
     public InstitutionDTO update(Long id, InstitutionDTO institution) {
@@ -42,7 +51,7 @@ public class InstitutionServiceImpl implements InstitutionService {
         InstitutionEntity entityId = institutionRepository.getReferenceById(id);
         InstitutionEntity entity = institutionMapper.update(entityId, institution);
         InstitutionEntity entityUpdated = institutionRepository.save(entity);
-        InstitutionDTO dto = institutionMapper.institutionEntity2DTO(entityUpdated, true);
+        InstitutionDTO dto = institutionMapper.institutionEntity2DTO(entityUpdated,true, false);
         return dto;
     }
 
