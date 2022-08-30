@@ -19,7 +19,6 @@ public class CourseController {
         CourseDTO courseSaved = courseService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(courseSaved);
     }
-    //TODO fix loop
     @GetMapping("/{id}")
     public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id)
     {

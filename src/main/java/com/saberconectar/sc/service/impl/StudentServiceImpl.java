@@ -44,9 +44,35 @@ public class StudentServiceImpl implements StudentService {
         StudentDTO dto = studentMapper.studentEntity2DTO(entityUpdated);
         return dto;
     }
+
+    public void addCourse(Long idStudent, Long idCourse) {
+        areCorrect(idStudent, "student id.", idCourse, "course id.");
+        StudentEntity studentEntity = studentRepository.getReferenceById(idStudent);
+        CourseEntity courseEntity = courseRepository.getReferenceById(idCourse);
+        studentEntity.getCourses().add(courseEntity);
+        studentRepository.save(studentEntity);
+    }
+    public void removeCourse(Long idStudent, Long idCourse) {
+        areCorrect(idStudent, "student id.", idCourse, "course id.");
+        StudentEntity studentEntity = studentRepository.getReferenceById(idStudent);
+        CourseEntity courseEntity = courseRepository.getReferenceById(idCourse);
+        studentEntity.getCourses().remove(courseEntity);
+        studentRepository.save(courseEntity);
+    }
+
     public void isCorrect(Long id){
         if(!studentRepository.existsById(id)){
             throw new ParamNotFound("Invalid id");
+        }
+    }
+    public void areCorrect(Long idOne, String nameOne, Long idTwo, String nameTwo) {
+        if (!studentRepository.existsById(idOne)&&!courseRepository.existsById(idTwo)){
+            throw new ParamNotFound("Invalid items");
+        }else{
+            isCorrect(idOne, nameOne);
+            if (!courseRepository.existsById(idTwo)){
+                throw new ParamNotFound("Invalid " + nameTwo );
+            }
         }
     }
 }
