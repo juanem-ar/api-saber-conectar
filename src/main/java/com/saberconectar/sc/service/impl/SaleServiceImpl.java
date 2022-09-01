@@ -5,22 +5,37 @@ import com.saberconectar.sc.service.SaleService;
 import org.springframework.stereotype.Service;
 @Service
 public class SaleServiceImpl implements SaleService {
-    @Override
+    @Autowired
+    private SaleRepository saleRepository;
+    @Autowired
+    private SaleMapper saleMapper;
     public SaleDTO getSaleById(Long id) {
-        return null;
+        isCorrect(id);
+        SaleEntity entity = saleRepository.getReferenceById(id);
+        SaleDTO dto = saleMapper.saleEntity2DTO(entity);
+        return dto;
     }
-    @Override
-    public SaleDTO save(SaleDTO dto) {
-        return null;
+    public SaleDTO save(SaleDTO sale){
+        SaleEntity entity = saleMapper.saleDTO2Entity(sale);
+        SaleEntity entitySaved = saleRepository.save(entity);
+        SaleDTO dto = saleMapper.saleEntity2DTO(entitySaved);
+        return dto
     }
-    @Override
     public SaleDTO update(Long id, SaleDTO sale) {
-        return null;
+        isCorrect(id);
+        SaleEntity entityId = saleRepository.getReferenceById(id);
+        SaleEntity entity = saleMapper.update(entityId,sale);
+        SaleEntity entityUpdated = saleRepository.save(entity);
+        SaleDTO result = saleMapper.saleEntity2DTO(entityUpdated);
+        return result;
     }
-    @Override
     public void delete(Long id) {
+        isCorrect(id);
+        this.saleRepository.deleteById(id);
     }
-    @Override
     public void isCorrect(Long id) {
+        if(!saleRepository.existsById(id)){
+            throw new ParamNotFound("Invalid id.");
+        }
     }
 }

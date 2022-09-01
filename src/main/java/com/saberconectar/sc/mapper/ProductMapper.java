@@ -1,7 +1,7 @@
 package com.saberconectar.sc.mapper;
 
-import com.saberconectar.sc.dto.InvoiceTypeDTO;
-import com.saberconectar.sc.entity.InvoiceTypeEntity;
+import com.saberconectar.sc.dto.ProductDTO;
+import com.saberconectar.sc.entity.ProductEntity;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
