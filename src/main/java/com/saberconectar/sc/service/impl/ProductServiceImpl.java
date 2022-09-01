@@ -6,23 +6,36 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
-    @Override
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private ProductMapper productMapper;
     public List<ProductDTO> getAllProducts() {
-        return null;
+        List<ProductEntity> entities = productRepository.findAll();
+        List<ProductDTO> dtos = productMapper.productEntityList2DTOList(entities);
+        return dtos;
     }
-    @Override
     public ProductDTO save(ProductDTO product) {
-        return null;
+        ProductEntity entity = productMapper.productDTO2Entity(type);
+        ProductEntity entitySaved = productRepository.save(entity);
+        ProductDTO result = productMapper.productEntity2DTO(entitySaved);
+        return result;
     }
-    @Override
     public ProductDTO update(Long id, ProductDTO product) {
-        return null;
+        isCorrect(id);
+        ProductEntity entityId = productRepository.getReferenceById(id);
+        ProductEntity entity = productMapper.update(entityId,product);
+        ProductEntity entityUpdated = productRepository.save(entity);
+        ProductDTO result = productMapper.productEntity2DTO(entityUpdated);
+        return result;
     }
-    @Override
     public void delete(Long id) {
+        isCorrect(id);
+        this.productRepository.deleteById(id);
     }
-    @Override
     public void isCorrect(Long id) {
-
+        if(!productRepository.existsById(id)){
+            throw new ParamNotFound("Invalid id");
+        }
     }
 }
