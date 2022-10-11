@@ -19,7 +19,7 @@ public class SaleServiceImpl implements SaleService {
         SaleEntity entity = saleMapper.saleDTO2Entity(sale);
         SaleEntity entitySaved = saleRepository.save(entity);
         SaleDTO dto = saleMapper.saleEntity2DTO(entitySaved);
-        return dto
+        return dto;
     }
     public SaleDTO update(Long id, SaleDTO sale) {
         isCorrect(id);

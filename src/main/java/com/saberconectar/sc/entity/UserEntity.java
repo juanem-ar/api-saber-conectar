@@ -37,8 +37,10 @@ public class UserEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id", insertable = false, updatable = false)
     private CityEntity city; // search info into city datatable
+
     @OneToOne(mappedBy = "userEntity")
     private StudentEntity studentEntity;
+
     @OneToOne(mappedBy = "userEntity")
     private InstitutionEntity institutionEntity;
 }
